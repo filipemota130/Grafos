@@ -17,6 +17,7 @@ int main(){
         cin >> v >> u >> w;
         v--; u--;
         Grafo[v].push_back({u,w});
+        Grafo[u].push_back({v,w});
     }
 
     priority_queue<pair<int,int>> dj;//vertice,distancia
