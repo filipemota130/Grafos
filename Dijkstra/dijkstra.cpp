@@ -13,7 +13,6 @@ int main(){
     vector<vector<pair<int,int>>> Grafo(n);
 
     for(int i=0; i<m; i++){
-        w=1;
         cin >> v >> u >> w;
         v--; u--;
         Grafo[v].push_back({u,w});
