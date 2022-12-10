@@ -21,8 +21,6 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
  
     pq.push(make_pair(0, src));
     key[src] = 0;
-
-    int sum = 0;
     while (!pq.empty())
     {
         int u = pq.top().second;
@@ -32,7 +30,6 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
         }
        
         inMST[u] = true;
-
         vector< pair<int, int> >::iterator i;
         for (i = Grafo[u].begin(); i != Grafo[u].end(); ++i)
         {
@@ -46,11 +43,14 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
             }
         }
     }
-    for (int i = 1; i < V; ++i)
+    int sum = 0;
+    for (int i = 1; i < V; ++i){
         cout<< "(" << parent[i]+1 << "," << i+1 <<")" << " ";
-    cout<< endl;
-    cout<< sum << endl;
+        sum+=key[i];
+    }
+    cout<< "sum: " << sum << endl;
 }
+
 int main()
 {
     int n,m,v,u,w;
@@ -58,7 +58,7 @@ int main()
     vector<vector<pair<int,int>>> Grafo(n);
     for(int i=0; i<m; i++){
         cin >> v >> u >> w;
-        v; u;
+        v--; u--;
         Grafo[v].push_back({u,w});
         Grafo[u].push_back({v,w});
     }
