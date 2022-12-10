@@ -48,7 +48,7 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
         cout<< "(" << parent[i]+1 << "," << i+1 <<")" << " ";
         sum+=key[i];
     }
-    cout<< "sum: " << sum << endl;
+    cout<< endl << "Peso Total da Arvore Geradora: " << sum << endl;
 }
 
 int main()
@@ -56,6 +56,7 @@ int main()
     int n,m,v,u,w;
     cin >> n >> m;
     vector<vector<pair<int,int>>> Grafo(n);
+    //Aceita Apenas Vértices possitivos >0
     for(int i=0; i<m; i++){
         cin >> v >> u >> w;
         v--; u--;
