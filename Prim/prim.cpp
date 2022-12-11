@@ -2,14 +2,13 @@
 #include <limits.h>
 #include <vector>
 #include <queue>
-
 using namespace std;
 
 typedef pair<int, int> iPair;
 
 void primMST(vector<vector<pair<int,int>>> Grafo, int V)
 {
-    priority_queue< iPair, vector <iPair> , greater<iPair> > pq;
+    priority_queue <iPair, vector <iPair>, greater<iPair>> pq;
  
     int src = 0;
 
@@ -25,7 +24,8 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
     {
         int u = pq.top().second;
         pq.pop();
-        if(inMST[u] == true){
+        if(inMST[u] == true)
+        {
             continue;
         }
        
@@ -44,24 +44,26 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
         }
     }
     int sum = 0;
-    for (int i = 1; i < V; ++i){
-        cout<< "(" << parent[i]+1 << "," << i+1 <<")" << " ";
-        sum+=key[i];
+    for (int i = 1; i < V; ++i)
+    {
+        cout << "(" << parent[i] + 1 << "," << i+1 << ")" << " ";
+        sum += key[i];
     }
-    cout<< endl << "Peso Total da Arvore Geradora: " << sum << endl;
+    cout << endl << "Peso total da árvore geradora: " << sum << endl;
 }
 
 int main()
 {
-    int n,m,v,u,w;
+    int n, m, v, u, w;
     cin >> n >> m;
-    vector<vector<pair<int,int>>> Grafo(n);
+    vector <vector<pair<int,int>>> Grafo(n);
     //Aceita Apenas Vértices possitivos >0
-    for(int i=0; i<m; i++){
+    for(int i = 0; i < m; i++)
+    {
         cin >> v >> u >> w;
-        v--; u--;
-        Grafo[v].push_back({u,w});
-        Grafo[u].push_back({v,w});
+        v--, u--;
+        Grafo[v].push_back({u, w});
+        Grafo[u].push_back({v, w});
     }
     primMST(Grafo, n);
     return 0;

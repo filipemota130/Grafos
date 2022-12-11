@@ -1,2 +1,2 @@
 all:
-	g++ dijkstra.cpp -o dijkstra
+	g++ dijkstra.cpp -o dij
