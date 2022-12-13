@@ -22,8 +22,11 @@ int main(){
 
     priority_queue<pair<int,int>> dj;
     vector<int> dist(n, INT_MAX);
-    dist[0] = 0;
-    dj.push({0,0});
+    int src;
+    cin >> src;
+    src--;
+    dist[src] = 0;
+    dj.push({0,src});
     while (dj.size() > 0) 
     {
         int v = dj.top().second;
