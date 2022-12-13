@@ -20,18 +20,18 @@ int main(){
         Grafo[u].push_back({v, w});
     }
 
-    priority_queue<pair<int,int>> dj;
+    priority_queue<pair<int,int>> pq;
     vector<int> dist(n, INT_MAX);
     int src;
     cin >> src;
     src--;
     dist[src] = 0;
-    dj.push({0,src});
-    while (dj.size() > 0) 
+    pq.push({0,src});
+    while (pq.size() > 0) 
     {
-        int v = dj.top().second;
-        int w = -dj.top().first;
-        dj.pop();
+        int v = pq.top().second;
+        int w = -pq.top().first;
+        pq.pop();
         if(w != dist[v]) continue;
         for(auto edge:Grafo[v])
         {
@@ -40,7 +40,7 @@ int main(){
             if (dist[u] > dist[v] + w)
             {
                 dist[u] = dist[v] + w; 
-                dj.push({-dist[u], u});
+                pq.push({-dist[u], u});
             }
         }
     }

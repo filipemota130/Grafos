@@ -30,11 +30,10 @@ void primMST(vector<vector<pair<int,int>>> Grafo, int V)
         }
        
         inMST[u] = true;
-        vector< pair<int, int> >::iterator i;
-        for (i = Grafo[u].begin(); i != Grafo[u].end(); ++i)
+        for (auto edge:Grafo[u])
         {
-            int v = (*i).first;
-            int weight = (*i).second;
+            int v = edge.first;
+            int weight = edge.second;
             if (inMST[v] == false && key[v] > weight)
             {
                 key[v] = weight;
