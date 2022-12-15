@@ -57,7 +57,7 @@ int main()
     int n, m, v, u, w;
     cin >> n >> m;
     vector <vector<pair<int,int>>> Grafo(n);
-    //Aceita Apenas Vértices possitivos >0
+    //Aceita Apenas Vértices positivos >0
     for(int i = 0; i < m; i++)
     {
         cin >> v >> u >> w;

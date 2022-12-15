@@ -30,15 +30,19 @@ void floyd(vector<vector<int>> Grafo,int n){
 }
 
 int main(){
-    int n, w;
+    int n,w;
     cin >> n;
     vector<vector<int>> Grafo(n);
+    char value;
     for(int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++){
-            cin >> w;
-            if (w == -1){
+            cin >> value;
+            if (value == 'I'){
                 w=MAX;
+            }
+            else{
+                w=char(value)-'0';
             }
             Grafo[i].push_back(w);
         }
