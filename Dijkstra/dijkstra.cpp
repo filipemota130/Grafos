@@ -5,28 +5,15 @@
 
 using namespace std;
 
-int main(){
-    int n, m, v, u, w;
-
-    cin >> n >> m;
-
-    vector<vector<pair<int,int>>> Grafo(n);
-
-    for(int i = 0; i < m; i++)
-    {
-        cin >> v >> u >> w;
-        v--, u--;
-        Grafo[v].push_back({u, w});
-        Grafo[u].push_back({v, w});
-    }
-
-    priority_queue<pair<int,int>> pq;
+void dijkstra (int n,  vector<vector<pair<int,int>>> Grafo){
+    priority_queue<pair<int,int>> pq; // queue ordem do maior para o menor
     vector<int> dist(n, INT_MAX);
     int src;
     cin >> src;
     src--;
     dist[src] = 0;
     pq.push({0,src});
+
     while (pq.size() > 0) 
     {
         int v = pq.top().second;
@@ -54,4 +41,22 @@ int main(){
         cout << i << ":" << d << " ";
     }
     cout << endl;
+}
+
+int main(){
+    int n, m, v, u, w;
+
+    cin >> n >> m;
+
+    vector<vector<pair<int,int>>> Grafo(n);
+
+    for(int i = 0; i < m; i++)
+    {
+        cin >> v >> u >> w;
+        v--, u--;
+        Grafo[v].push_back({u, w});
+        Grafo[u].push_back({v, w});
+    }
+    dijkstra(n, Grafo);
+    
 }

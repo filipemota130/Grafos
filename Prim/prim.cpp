@@ -4,49 +4,50 @@
 #include <queue>
 using namespace std;
 
-typedef pair<int, int> iPair;
+typedef pair<int, int> dupla;
 
-void primMST(vector<vector<pair<int,int>>> Grafo, int V)
+void prim(vector<vector<pair<int,int>>> Grafo, int V)
 {
-    priority_queue <iPair, vector <iPair>, greater<iPair>> pq;
+    priority_queue <dupla, vector <dupla>, greater<dupla>> pq; //alternativa para inverter a ordem da queue
  
     int src = 0;
 
-    vector<int> key(V, INT_MAX);
+    vector<int> dist(V, INT_MAX);
 
     vector<int> parent(V, -1);
 
-    vector<bool> inMST(V, false);
+    vector<bool> check(V, false);
  
     pq.push(make_pair(0, src));
-    key[src] = 0;
+    dist[src] = 0;
     while (!pq.empty())
     {
         int u = pq.top().second;
         pq.pop();
-        if(inMST[u] == true)
+        if(check[u] == true)
         {
             continue;
         }
        
-        inMST[u] = true;
+        check[u] = true;
         for (auto edge:Grafo[u])
         {
             int v = edge.first;
             int weight = edge.second;
-            if (inMST[v] == false && key[v] > weight)
+            if (check[v] == false && dist[v] > weight)
             {
-                key[v] = weight;
-                pq.push(make_pair(key[v], v));
+                dist[v] = weight;
+                pq.push(make_pair(dist[v], v));
                 parent[v] = u;
             }
         }
     }
     int sum = 0;
+    //mostrar resultado
     for (int i = 1; i < V; ++i)
     {
         cout << "(" << parent[i] + 1 << "," << i+1 << ")" << " ";
-        sum += key[i];
+        sum += dist[i];
     }
     cout << endl << "Peso total da árvore geradora: " << sum << endl;
 }
@@ -64,6 +65,6 @@ int main()
         Grafo[v].push_back({u, w});
         Grafo[u].push_back({v, w});
     }
-    primMST(Grafo, n);
+    prim(Grafo, n);
     return 0;
 }
